@@ -20,8 +20,11 @@ public class LoginController implements Controller {
             throws ServletException, IOException {
 
         logger.info("Returning Login view");
+        ModelAndView modelandview =new ModelAndView("login");
+		modelandview.addObject("welcomemessage", "Hi, Welcome to Raman Classes Digital Reports");
+		return modelandview;
 
-        return new ModelAndView("/jsp/index.jsp");
+        //return new ModelAndView("/jsp/login.jsp");
     }
 
 }
