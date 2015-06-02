@@ -14,9 +14,9 @@
 	<bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/mytheme/" />
-	
+	<mvc:view-controller path="/" view-name="login"/>
 
-    <bean name="/login.htm" class="com.ramanclasses.controller.LoginController"/>
+    <bean name="/loginValidate.htm" class="com.ramanclasses.controller.LoginController"/>
 		
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
         <property name="prefix" value="/WEB-INF/jsp/" />  

@@ -10,21 +10,48 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.ramanclasses.daoimpl.CommonDaoImpl;
+import com.ramanclasses.daoimpl.User;
+import com.ramanclasses.daoimpl.UserDetail;
+import com.ramanclasses.util.Util;
+import com.ramanclasses.constants.Constants;
+
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginController implements Controller {
 
     protected final Log logger = LogFactory.getLog(getClass());
-
+    private CommonDaoImpl commonDao; 
+    private UserDetail userdetail;
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NoSuchAlgorithmException {
 
         logger.info("Returning Login view");
-        ModelAndView modelandview =new ModelAndView("login");
-		modelandview.addObject("welcomemessage", "Hi, Welcome to Raman Classes Digital Reports");
-		return modelandview;
-
-        //return new ModelAndView("/jsp/login.jsp");
+        String email = request.getParameter("email");
+        String pass = request.getParameter("pass");
+        ModelAndView modelandview;
+        pass = Util.covertToMd5(pass);
+        System.out.println(pass);
+        try{
+        	User user = commonDao.getUser(email,pass);
+        	
+        	if(user.getType()==Constants.ADMIN){	
+        		modelandview = new ModelAndView("admin_home");
+        		 Util.setParameters(modelandview,userdetail);
+        		 return modelandview;
+        	}
+        	else{
+        		 modelandview =new ModelAndView("student_home");
+        		 return modelandview;
+        	}
+        }
+        catch(Exception e){
+        	logger.info("Cannot find the user "+e);
+        	System.out.println("Cannot find the user "+e);
+        }
+		
+		return null;
     }
 
 }
