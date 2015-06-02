@@ -28,6 +28,7 @@ public class Util {
 		// TODO Auto-generated method stub
 		modelandview.addObject(Constants.TITLE, "Raman Classes");
 		modelandview.addObject(Constants.USERNAME,userdetail.getUsername());
+		modelandview.addObject(Constants.ACTIVE_FROM,userdetail.getActiveFrom());
 		
 	}
 	

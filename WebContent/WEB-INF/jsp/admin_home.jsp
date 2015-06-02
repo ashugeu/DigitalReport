@@ -245,7 +245,7 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                  <img src="${pageContext.request.contextPath}/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                   <span class="hidden-xs">${username}</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -253,8 +253,8 @@
                   <li class="user-header">
                     <img src="${pageContext.request.contextPath}/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      ${username} - Proffessor
+                      <small>${activefrom}</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -298,7 +298,7 @@
               <img src="${pageContext.request.contextPath}/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>${username}</p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
