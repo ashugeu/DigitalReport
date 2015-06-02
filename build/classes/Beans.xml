@@ -8,14 +8,14 @@
    <bean id="dataSource" 
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-      <property name="url" value="jdbc:mysql://localhost:3306/TEST"/>
+      <property name="url" value="jdbc:mysql://localhost:8380/digitalreports"/>
       <property name="username" value="root"/>
-      <property name="password" value="admin"/>
+      <property name="password" value="ashu"/>
    </bean>
 
    <!-- Definition for studentJDBCTemplate bean -->
-   <bean id="studentJDBCTemplate" 
-      class="com.tutorialspoint.StudentJDBCTemplate">
+   <bean id="CommonDaoImpl" 
+      class="com.ramanclasses.daoimpl.CommonDaoImpl">
       <property name="dataSource"  ref="dataSource" />    
    </bean>
       

@@ -16,11 +16,9 @@ import com.ramanclasses.daoimpl.User;
 public class CommonDaoImpl  implements CommonDao{
 	
 
-	 private DataSource dataSource;
 	 private JdbcTemplate jdbcTemplateObject;
 	   
-	 public void setDataSource(DataSource dataSource) {
-	      this.dataSource = dataSource;
+	 public CommonDaoImpl(DataSource dataSource) {
 	      this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	 }
 	   

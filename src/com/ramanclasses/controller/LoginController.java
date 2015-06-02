@@ -26,13 +26,13 @@ public class LoginController implements Controller {
     private UserDetail userdetail;
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException {
-
+    	
         logger.info("Returning Login view");
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
         ModelAndView modelandview;
         pass = Util.covertToMd5(pass);
-        System.out.println(pass);
+        //System.out.println(pass);
         try{
         	User user = commonDao.getUser(email,pass);
         	
@@ -41,7 +41,7 @@ public class LoginController implements Controller {
         		 Util.setParameters(modelandview,userdetail);
         		 return modelandview;
         	}
-        	else{
+        	else if(user.getType() == Constants.STUDENT){
         		 modelandview =new ModelAndView("student_home");
         		 return modelandview;
         	}

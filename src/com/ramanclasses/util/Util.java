@@ -3,6 +3,8 @@ package com.ramanclasses.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ramanclasses.constants.Constants;
@@ -30,6 +32,15 @@ public class Util {
 		modelandview.addObject(Constants.USERNAME,userdetail.getUsername());
 		modelandview.addObject(Constants.ACTIVE_FROM,userdetail.getActiveFrom());
 		
+	}
+
+	public static void setJdbcSource() {
+		// TODO Auto-generated method stub
+		ApplicationContext context = 
+	             new ClassPathXmlApplicationContext("Beans.xml");
+
+	      StudentJDBCTemplate studentJDBCTemplate = 
+	      (StudentJDBCTemplate)context.getBean("studentJDBCTemplate");
 	}
 	
 }
