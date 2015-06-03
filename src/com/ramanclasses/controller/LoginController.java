@@ -41,9 +41,7 @@ public class LoginController implements Controller {
         String pass = request.getParameter("pass");
         ModelAndView modelandview;
         pass = Util.covertToMd5(pass);
-        //System.out.println(pass);
         try{
-        	System.out.println(email+"    "+pass);
         	User user = commonDao.getUser(email,pass);
         	
         	if(user.getType()==Constants.ADMIN){	
