@@ -1,5 +1,7 @@
 package com.ramanclasses.controller;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.ramanclasses.dao.CommonDao;
 import com.ramanclasses.daoimpl.CommonDaoImpl;
 import com.ramanclasses.daoimpl.User;
 import com.ramanclasses.daoimpl.UserDetail;
@@ -22,10 +25,16 @@ import java.security.NoSuchAlgorithmException;
 public class LoginController implements Controller {
 
     protected final Log logger = LogFactory.getLog(getClass());
-    private CommonDaoImpl commonDao; 
     private UserDetail userdetail;
+   
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException {
+    	
+    	 
+    	ApplicationContext context = 
+    	    		new ClassPathXmlApplicationContext("Beans.xml");
+    	    	 
+    	CommonDaoImpl commonDao = (CommonDaoImpl) context.getBean("commonDao");
     	
         logger.info("Returning Login view");
         String email = request.getParameter("email");

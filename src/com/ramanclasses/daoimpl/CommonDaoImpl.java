@@ -2,10 +2,9 @@ package com.ramanclasses.daoimpl;
 
 
 import java.sql.Types;
-import javax.sql.DataSource;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
+
 
 import com.ramanclasses.reportsql.UserSql;
 import com.ramanclasses.dao.CommonDao;
@@ -13,15 +12,9 @@ import com.ramanclasses.daoimpl.User;
 
 
 
-public class CommonDaoImpl  implements CommonDao{
-	
-
-	 private JdbcTemplate jdbcTemplateObject;
-	   
-	 public CommonDaoImpl(DataSource dataSource) {
-	      this.jdbcTemplateObject = new JdbcTemplate(dataSource);
-	 }
-	   
+public class CommonDaoImpl extends SimpleJdbcDaoSupport implements CommonDao{
+		
+    
 	@Override
 	public User getUser(String email, String password) {
 		// TODO Auto-generated method stub
@@ -32,7 +25,7 @@ public class CommonDaoImpl  implements CommonDao{
 		
 		try
 		{
-			user = (User) jdbcTemplateObject.query(UserSql.FIND_USER_EXIST, params, types, new UserMapper());
+			user = (User)getJdbcTemplate().query(UserSql.FIND_USER_EXIST, params, types, new UserMapper());
 		}catch(Exception e)
 		{
 			System.out.println(e.getMessage());
@@ -49,7 +42,7 @@ public class CommonDaoImpl  implements CommonDao{
 		int [] types = new int [] {Types.NUMERIC} ;
 		try
 		{
-			userType = (String)jdbcTemplateObject.queryForObject(UserSql.GET_USER_TYPE,params,types,String.class);
+			userType = (String)getJdbcTemplate().queryForObject(UserSql.GET_USER_TYPE,params,types,String.class);
 		}
 		catch(Exception e)
 		{
@@ -67,7 +60,7 @@ public class CommonDaoImpl  implements CommonDao{
 		int [] types = new int [] {Types.VARCHAR} ;
 		try
 		{
-			userId = (Long)jdbcTemplateObject.queryForObject(UserSql.GET_USER_ID,params,types,Long.class);
+			userId = (Long)getJdbcTemplate().queryForObject(UserSql.GET_USER_ID,params,types,Long.class);
 		}
 		catch(Exception e)
 		{
@@ -76,4 +69,6 @@ public class CommonDaoImpl  implements CommonDao{
 	
 		return userId;
 	}
+
+
 }

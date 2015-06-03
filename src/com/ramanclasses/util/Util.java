@@ -34,13 +34,5 @@ public class Util {
 		
 	}
 
-	public static void setJdbcSource() {
-		// TODO Auto-generated method stub
-		ApplicationContext context = 
-	             new ClassPathXmlApplicationContext("Beans.xml");
-
-	      StudentJDBCTemplate studentJDBCTemplate = 
-	      (StudentJDBCTemplate)context.getBean("studentJDBCTemplate");
-	}
 	
 }
